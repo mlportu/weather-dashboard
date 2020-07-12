@@ -67,13 +67,27 @@ var getUvIndex = function(lat,lon){
     fetch(apiURL)
     .then(function(response){
         response.json().then(function(data){
+            displayUvIndex(data)
             console.log(data)
         });
     });
     console.log(lat);
     console.log(lon);
 }
+ 
+var displayUvIndex = function(index){
+    var uvIndexEl = document.createElement("div");
+    uvIndexEl.textContent = "UV Index: ";
 
+    var uvIndexValueEl = document.createElement("span");
+    uvIndexValueEl.textContent= index.value
+
+    //append index value to div
+    uvIndexEl.appendChild(uvIndexValueEl);
+    
+    //append index to current weather
+    weatherContainerEl.appendChild(uvIndexEl);
+}
 
 cityFormEl.addEventListener("submit", formSumbitHandler);
 
