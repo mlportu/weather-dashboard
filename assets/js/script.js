@@ -14,12 +14,18 @@ var formSumbitHandler = function(event){
         getCityWeather(city);
         get5Day(city);
         cities.push({city});
+        saveSearch()
         cityInputEl.value = "";
     } else{
         alert("Please enter a City");
     }
     console.log(cities)
 }
+
+var saveSearch = function(){
+    localStorage.setItem("cities", JSON.stringify(cities));
+};
+
 var getCityWeather = function(city){
     var apiKey = "844421298d794574c100e3409cee0499"
     var apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`
@@ -136,6 +142,7 @@ var display5Day = function(weather){
     }
 
 }
+
 
 
 cityFormEl.addEventListener("submit", formSumbitHandler);
