@@ -2,7 +2,7 @@ var cityFormEl=document.querySelector("#city-search-form");
 var cityInputEl=document.querySelector("#city");
 var weatherContainerEl=document.querySelector("#current-weather-container");
 var citySearchInputEl = document.querySelector("#searched-city");
-var fiveDayForecastEl = document.querySelector("#five-day-forecast");
+var forecastContainerEl = document.querySelector("#fiveday-container");
 
 
 var formSumbitHandler = function(event){
@@ -36,15 +36,15 @@ var displayWeather = function(weather, searchCity){
    citySearchInputEl.textContent=searchCity + " (" + weather.coord.dt + ") " +weather.weather[0].icon
 
    //create a span element to hold temperature data
-   var temperatureEl = document.createElement("div");
+   var temperatureEl = document.createElement("span");
    temperatureEl.textContent = "Temperature: " + weather.main.temp + " degrees F";
   
    //create a span element to hold Humidity data
-   var humidityEl = document.createElement("div");
+   var humidityEl = document.createElement("span");
    humidityEl.textContent = "Humidity: " + weather.main.humidity + " %";
   
    //create a span element to hold Wind data
-   var windSpeedEl = document.createElement("div");
+   var windSpeedEl = document.createElement("span");
    windSpeedEl.textContent = "Wind Speed: " + weather.wind.speed + " MPH";
 
    
@@ -85,7 +85,7 @@ var displayUvIndex = function(index){
 
     //append index value to div
     uvIndexEl.appendChild(uvIndexValueEl);
-    
+
     //append index to current weather
     weatherContainerEl.appendChild(uvIndexEl);
 }
@@ -105,21 +105,31 @@ var get5Day = function(city){
 var display5Day = function(weather){
     var forecast = weather.list;
 
+    
     for(var i=5; i < forecast.length; i=i+8){
        var dailyForecast = forecast[i];
-
+        
+       //console.log(dailyForecast);
        var forecastEl=document.createElement("div");
        forecastEl.classList = "card bg-primary text-light";
 
-       var forecastTempEl=document.createElement("h5");
+       var forecastTempEl=document.createElement("span");
        forecastTempEl.classList = "card-body";
-       forecastTempEl.textContent = dailyForecast.main.temp + " degrees F";
+       forecastTempEl.textContent = dailyForecast.main.temp + "  F";
 
-       console.log(forecastTempEl);
+        //append to forecast card
+        forecastEl.appendChild(forecastTempEl);
 
-       forecastEl.appendChild(forecastTempEl);
+       var forecastHumEl=document.createElement("span");
+       forecastHumEl.classList = "card-body";
+       forecastHumEl.textContent = dailyForecast.main.humidity + "  %";
 
-       fiveDayForecastEl.appendChild(forecastEl);
+       //append to forecast card
+       forecastEl.appendChild(forecastHumEl);
+
+        console.log(forecastEl);
+       //append to five day container
+        forecastContainerEl.appendChild(forecastEl);
     }
 
 }
