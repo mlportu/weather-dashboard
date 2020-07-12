@@ -34,14 +34,27 @@ var displayWeather = function(weather, searchCity){
    weatherContainerEl.textContent= "";  
    citySearchInputEl.textContent=searchCity + " (" + weather.coord.dt + ") " +weather.weather[0].icon
 
-
    //create a span element to hold temperature data
    var temperatureEl = document.createElement("div");
-   temperatureEl.classList = "list-item flex-row justify-space-between align-center";
-   temperatureEl.textContent = weather.main.temp + " degrees F";
+   temperatureEl.textContent = "Temperature: " + weather.main.temp + " degrees F";
+  
+   //create a span element to hold Humidity data
+   var humidityEl = document.createElement("div");
+   humidityEl.textContent = "Humidity: " + weather.main.humidity + " %";
+  
+   //create a span element to hold Wind data
+   var windSpeedEl = document.createElement("div");
+   windSpeedEl.textContent = "Wind Speed: " + weather.wind.speed + " MPH";
 
+   
    //append to container
    weatherContainerEl.appendChild(temperatureEl);
+
+   //append to container
+   weatherContainerEl.appendChild(humidityEl);
+   
+   //append to container
+   weatherContainerEl.appendChild(windSpeedEl);
 }
 
 cityFormEl.addEventListener("submit", formSumbitHandler);
