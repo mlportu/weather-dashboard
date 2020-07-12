@@ -28,8 +28,9 @@ var getCityWeather = function(city){
 };
 
 var displayWeather = function(weather, searchCity){
-    console.log(searchCity);
-    console.log(weather);
+   //clear old content
+   weatherContainerEl.textContent= "";
+   citySearchInput.textContent=searchCity
 }
 
 cityFormEl.addEventListener("submit", formSumbitHandler);
