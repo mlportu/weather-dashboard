@@ -5,11 +5,9 @@ var citySearchInputEl = document.querySelector("#searched-city");
 var forecastTitle = document.querySelector("#forecast");
 var forecastContainerEl = document.querySelector("#fiveday-container");
 
-
 var formSumbitHandler = function(event){
     event.preventDefault();
     var city = cityInputEl.value.trim();
-    
     if(city){
         getCityWeather(city);
         get5Day(city);
@@ -18,7 +16,6 @@ var formSumbitHandler = function(event){
         alert("Please enter a City");
     }
 }
-
 var getCityWeather = function(city){
     var apiKey = "844421298d794574c100e3409cee0499"
     var apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`
@@ -104,11 +101,11 @@ var get5Day = function(city){
 };
 
 var display5Day = function(weather){
-    var forecast = weather.list;
-
+    forecastContainerEl.textContent = ""
     forecastTitle.textContent = "5 Day Forecast";
 
-    for(var i=5; i < forecast.length; i=i+8){
+    var forecast = weather.list;
+        for(var i=5; i < forecast.length; i=i+8){
        var dailyForecast = forecast[i];
         
        //console.log(dailyForecast);
@@ -129,7 +126,7 @@ var display5Day = function(weather){
        //append to forecast card
        forecastEl.appendChild(forecastHumEl);
 
-        console.log(forecastEl);
+        // console.log(forecastEl);
        //append to five day container
         forecastContainerEl.appendChild(forecastEl);
     }
