@@ -1,3 +1,5 @@
+var cities = [];
+
 var cityFormEl=document.querySelector("#city-search-form");
 var cityInputEl=document.querySelector("#city");
 var weatherContainerEl=document.querySelector("#current-weather-container");
@@ -11,10 +13,12 @@ var formSumbitHandler = function(event){
     if(city){
         getCityWeather(city);
         get5Day(city);
+        cities.push({city});
         cityInputEl.value = "";
     } else{
         alert("Please enter a City");
     }
+    console.log(cities)
 }
 var getCityWeather = function(city){
     var apiKey = "844421298d794574c100e3409cee0499"
