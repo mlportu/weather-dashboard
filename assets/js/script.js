@@ -1,6 +1,7 @@
 var cityFormEl=document.querySelector("#city-search-form");
 var cityInputEl=document.querySelector("#city");
-
+var weatherContainerEl=document.querySelector("#current-weather-container");
+var citySearchInput = document.querySelector("#searched-city");
 
 var formSumbitHandler = function(event){
     event.preventDefault();
@@ -21,10 +22,14 @@ var getCityWeather = function(city){
     fetch(apiURL)
     .then(function(response){
         response.json().then(function(data){
-            console.log(data)
+            displayWeather(data, city)
         });
     });
 };
 
+var displayWeather = function(weather, searchCity){
+    console.log(searchCity);
+    console.log(weather);
+}
 
 cityFormEl.addEventListener("submit", formSumbitHandler);
