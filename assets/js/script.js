@@ -101,8 +101,13 @@ var get5Day = function(city){
     });
 };
 
-var display5Day = function(forecast){
-    console.log(forecast);
+var display5Day = function(weather){
+    var forecast = weather.list;
+    for(var i=5; i < forecast.length; i=i+8){
+       var dailyForecast = forecast[i];
+       console.log(dailyForecast);
+    }
+
 }
 
 
