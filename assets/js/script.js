@@ -34,6 +34,14 @@ var displayWeather = function(weather, searchCity){
    weatherContainerEl.textContent= "";  
    citySearchInputEl.textContent=searchCity + " (" + weather.coord.dt + ") " +weather.weather[0].icon
 
+
+   //create a span element to hold temperature data
+   var temperatureEl = document.createElement("div");
+   temperatureEl.classList = "list-item flex-row justify-space-between align-center";
+   temperatureEl.textContent = weather.main.temp + " degrees F";
+
+   //append to container
+   weatherContainerEl.appendChild(temperatureEl);
 }
 
 cityFormEl.addEventListener("submit", formSumbitHandler);
