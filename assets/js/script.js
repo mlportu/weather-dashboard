@@ -92,7 +92,7 @@ var displayUvIndex = function(index){
 
 var get5Day = function(city){
     var apiKey = "844421298d794574c100e3409cee0499"
-    var apiURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&limit=5`
+    var apiURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`
 
     fetch(apiURL)
     .then(function(response){
@@ -113,7 +113,7 @@ var display5Day = function(weather){
 
        var forecastTempEl=document.createElement("h5");
        forecastTempEl.classList = "card-body";
-       forecastTempEl.textContent = dailyForecast.main.temp;
+       forecastTempEl.textContent = dailyForecast.main.temp + " degrees F";
 
        console.log(forecastTempEl);
 
