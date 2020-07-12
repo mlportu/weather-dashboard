@@ -32,11 +32,11 @@ var pastSearch = function(){
     if(!cities){
         cities = [];
     }
-
-    for (var i=cities.length; i>cities.length-6; i--){
-        
+  
+    for (var i=cities.length-1; i>=cities.length-5; i--){
+        console.log(cities[i].city);
     pastSearchEl = document.createElement("div");
-    pastSearchEl.textContent = city.city;
+    pastSearchEl.textContent = cities[i].city;
 
     pastSearchContainerEl.appendChild(pastSearchEl);
     }
@@ -61,7 +61,9 @@ var displayWeather = function(weather, searchCity){
 
    //create an image element
    var weatherIcon = document.createElement("img")
-   weatherIcon.setAttribute("src", weather.weather[0].icon);
+   weatherIcon.setAttribute("src", `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`);
+
+    console.log(weather.weather[0].icon)
 
    //create a span element to hold temperature data
    var temperatureEl = document.createElement("span");
