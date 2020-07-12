@@ -10,6 +10,7 @@ var formSumbitHandler = function(event){
     
     if(city){
         getCityWeather(city);
+        get5Day(city);
         cityInputEl.value = "";
     } else{
         alert("Please enter a City");
@@ -24,7 +25,6 @@ var getCityWeather = function(city){
     .then(function(response){
         response.json().then(function(data){
             displayWeather(data, city);
-            console.log(data)
         });
     });
 };
@@ -68,11 +68,11 @@ var getUvIndex = function(lat,lon){
     .then(function(response){
         response.json().then(function(data){
             displayUvIndex(data)
-            console.log(data)
+           // console.log(data)
         });
     });
-    console.log(lat);
-    console.log(lon);
+    //console.log(lat);
+    //console.log(lon);
 }
  
 var displayUvIndex = function(index){
@@ -88,6 +88,23 @@ var displayUvIndex = function(index){
     //append index to current weather
     weatherContainerEl.appendChild(uvIndexEl);
 }
+
+var get5Day = function(city){
+    var apiKey = "844421298d794574c100e3409cee0499"
+    var apiURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&limit=5`
+
+    fetch(apiURL)
+    .then(function(response){
+        response.json().then(function(data){
+           display5Day(data);
+        });
+    });
+};
+
+var display5Day = function(forecast){
+    console.log(forecast);
+}
+
 
 cityFormEl.addEventListener("submit", formSumbitHandler);
 
