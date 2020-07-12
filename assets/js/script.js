@@ -6,6 +6,7 @@ var weatherContainerEl=document.querySelector("#current-weather-container");
 var citySearchInputEl = document.querySelector("#searched-city");
 var forecastTitle = document.querySelector("#forecast");
 var forecastContainerEl = document.querySelector("#fiveday-container");
+var pastSearchContainerEl = document.querySelector("#past-search");
 
 var formSumbitHandler = function(event){
     event.preventDefault();
@@ -14,17 +15,32 @@ var formSumbitHandler = function(event){
         getCityWeather(city);
         get5Day(city);
         cities.push({city});
-        saveSearch()
         cityInputEl.value = "";
     } else{
         alert("Please enter a City");
     }
-    console.log(cities)
+    saveSearch();
+  
 }
 
 var saveSearch = function(){
     localStorage.setItem("cities", JSON.stringify(cities));
 };
+
+var pastSearch = function(){
+    cities = JSON.parse(localStorage.getItem("cities"));
+    if(!cities){
+        cities = [];
+    }
+
+    for (var i=cities.length; i>cities.length-6; i--){
+        
+    pastSearchEl = document.createElement("div");
+    pastSearchEl.textContent = city.city;
+
+    pastSearchContainerEl.appendChild(pastSearchEl);
+    }
+}
 
 var getCityWeather = function(city){
     var apiKey = "844421298d794574c100e3409cee0499"
@@ -41,11 +57,15 @@ var getCityWeather = function(city){
 var displayWeather = function(weather, searchCity){
    //clear old content
    weatherContainerEl.textContent= "";  
-   citySearchInputEl.textContent=searchCity + " (" + weather.coord.dt + ") " +weather.weather[0].icon
+   citySearchInputEl.textContent=searchCity + " (" + weather.coord.dt + ") "
+
+   //create an image element
+   var weatherIcon = document.createElement("img")
+   weatherIcon.setAttribute("src", weather.weather[0].icon);
 
    //create a span element to hold temperature data
    var temperatureEl = document.createElement("span");
-   temperatureEl.textContent = "Temperature: " + weather.main.temp + " degrees F";
+   temperatureEl.textContent = "Temperature: " + weather.main.temp + " °F";
   
    //create a span element to hold Humidity data
    var humidityEl = document.createElement("span");
@@ -55,7 +75,8 @@ var displayWeather = function(weather, searchCity){
    var windSpeedEl = document.createElement("span");
    windSpeedEl.textContent = "Wind Speed: " + weather.wind.speed + " MPH";
 
-   
+   citySearchInputEl.appendChild(weatherIcon);
+
    //append to container
    weatherContainerEl.appendChild(temperatureEl);
 
@@ -118,13 +139,13 @@ var display5Day = function(weather){
         for(var i=5; i < forecast.length; i=i+8){
        var dailyForecast = forecast[i];
         
-       //console.log(dailyForecast);
+       console.log(dailyForecast);
        var forecastEl=document.createElement("div");
        forecastEl.classList = "card bg-primary text-light m-2";
 
        var forecastTempEl=document.createElement("span");
        forecastTempEl.classList = "card-body";
-       forecastTempEl.textContent = dailyForecast.main.temp + "  F";
+       forecastTempEl.textContent = dailyForecast.main.temp + " °F";
 
         //append to forecast card
         forecastEl.appendChild(forecastTempEl);
@@ -143,7 +164,6 @@ var display5Day = function(weather){
 
 }
 
-
+pastSearch();
 
 cityFormEl.addEventListener("submit", formSumbitHandler);
-
