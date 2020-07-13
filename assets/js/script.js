@@ -38,7 +38,7 @@ var pastSearch = function(){
 
     pastSearchEl = document.createElement("button");
     pastSearchEl.textContent = city;
-    pastSearchEl.classList = "btn-light border p-2";
+    pastSearchEl.classList = "d-flex w-100 btn-light border p-2";
     pastSearchEl.setAttribute("data-city",city)
     pastSearchEl.setAttribute("type", "submit");
 
