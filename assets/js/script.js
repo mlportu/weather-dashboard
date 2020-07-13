@@ -34,7 +34,7 @@ var pastSearch = function(){
     }
   
     for (var i=cities.length-1; i>=cities.length-5; i--){
-        console.log(cities[i].city);
+        // console.log(cities[i].city);
     pastSearchEl = document.createElement("div");
     pastSearchEl.textContent = cities[i].city;
 
@@ -62,8 +62,6 @@ var displayWeather = function(weather, searchCity){
    //create an image element
    var weatherIcon = document.createElement("img")
    weatherIcon.setAttribute("src", `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`);
-
-    console.log(weather.weather[0].icon)
 
    //create a span element to hold temperature data
    var temperatureEl = document.createElement("span");
@@ -141,10 +139,21 @@ var display5Day = function(weather){
         for(var i=5; i < forecast.length; i=i+8){
        var dailyForecast = forecast[i];
         
-       console.log(dailyForecast);
+       
        var forecastEl=document.createElement("div");
        forecastEl.classList = "card bg-primary text-light m-2";
 
+    console.log(dailyForecast)
+       //create an image element
+       var weatherIcon = document.createElement("img")
+       weatherIcon.setAttribute("src", `http://openweathermap.org/img/wn/${dailyForecast.weather[0].icon}@2x.png`);  
+       
+        console.log(weatherIcon);
+
+       //append to forecast card
+       forecastEl.appendChild(weatherIcon);
+       
+       //create temperature span
        var forecastTempEl=document.createElement("span");
        forecastTempEl.classList = "card-body";
        forecastTempEl.textContent = dailyForecast.main.temp + " °F";
