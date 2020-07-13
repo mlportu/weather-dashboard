@@ -74,14 +74,17 @@ var displayWeather = function(weather, searchCity){
    //create a span element to hold temperature data
    var temperatureEl = document.createElement("span");
    temperatureEl.textContent = "Temperature: " + weather.main.temp + " °F";
+   temperatureEl.classList = "list-group-item"
   
    //create a span element to hold Humidity data
    var humidityEl = document.createElement("span");
    humidityEl.textContent = "Humidity: " + weather.main.humidity + " %";
-  
+   humidityEl.classList = "list-group-item"
+
    //create a span element to hold Wind data
    var windSpeedEl = document.createElement("span");
    windSpeedEl.textContent = "Wind Speed: " + weather.wind.speed + " MPH";
+   windSpeedEl.classList = "list-group-item"
 
    //append to container
    weatherContainerEl.appendChild(temperatureEl);
@@ -113,13 +116,8 @@ var getUvIndex = function(lat,lon){
  
 var displayUvIndex = function(index){
     var uvIndexEl = document.createElement("div");
-    uvIndexEl.textContent = "UV Index: ";
-
-    var uvIndexValueEl = document.createElement("span");
-    uvIndexValueEl.textContent= index.value
-
-    //append index value to div
-    uvIndexEl.appendChild(uvIndexValueEl);
+    uvIndexEl.textContent = "UV Index: "+ index.value;
+    uvIndexEl.classList = "list-group-item"
 
     //append index to current weather
     weatherContainerEl.appendChild(uvIndexEl);
@@ -139,7 +137,7 @@ var get5Day = function(city){
 
 var display5Day = function(weather){
     forecastContainerEl.textContent = ""
-    forecastTitle.textContent = "5 Day Forecast";
+    forecastTitle.textContent = "5-Day Forecast:";
 
     var forecast = weather.list;
         for(var i=5; i < forecast.length; i=i+8){
@@ -149,7 +147,7 @@ var display5Day = function(weather){
        var forecastEl=document.createElement("div");
        forecastEl.classList = "card bg-primary text-light m-2";
 
-       console.log(dailyForecast.dt);
+       //console.log(dailyForecast)
 
        //create date element
        var forecastDate = document.createElement("h5")
