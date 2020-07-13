@@ -86,7 +86,7 @@ var displayWeather = function(weather, searchCity){
 
 var getUvIndex = function(lat,lon){
     var apiKey = "844421298d794574c100e3409cee0499"
-    var apiURL = `http://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`
+    var apiURL = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`
     fetch(apiURL)
     .then(function(response){
         response.json().then(function(data){
@@ -157,7 +157,7 @@ var display5Day = function(weather){
        //create an image element
        var weatherIcon = document.createElement("img")
        weatherIcon.classList = "card-body text-center";
-       weatherIcon.setAttribute("src", `http://openweathermap.org/img/wn/${dailyForecast.weather[0].icon}@2x.png`);  
+       weatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${dailyForecast.weather[0].icon}@2x.png`);  
 
        //append to forecast card
        forecastEl.appendChild(weatherIcon);
