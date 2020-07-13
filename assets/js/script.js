@@ -149,16 +149,18 @@ var display5Day = function(weather){
        var forecastEl=document.createElement("div");
        forecastEl.classList = "card bg-primary text-light m-2";
 
+       console.log(dailyForecast.dt);
+
        //create date element
        var forecastDate = document.createElement("h5")
-       forecastDate.classList = "card-header"
-       forecastDate.textContent= moment(dailyForecast.dt.value).format("MMM D, YYYY");
+       forecastDate.textContent= moment.unix(dailyForecast.dt).format("MMM D, YYYY");
+       forecastDate.classList = "card-header text-center"
        forecastEl.appendChild(forecastDate);
 
-       //console.log(dailyForecast)
+       
        //create an image element
        var weatherIcon = document.createElement("img")
-       weatherIcon.classList = "card-body";
+       weatherIcon.classList = "card-body text-center";
        weatherIcon.setAttribute("src", `http://openweathermap.org/img/wn/${dailyForecast.weather[0].icon}@2x.png`);  
 
        //append to forecast card
@@ -166,14 +168,14 @@ var display5Day = function(weather){
        
        //create temperature span
        var forecastTempEl=document.createElement("span");
-       forecastTempEl.classList = "card-body";
+       forecastTempEl.classList = "card-body text-center";
        forecastTempEl.textContent = dailyForecast.main.temp + " °F";
 
         //append to forecast card
         forecastEl.appendChild(forecastTempEl);
 
        var forecastHumEl=document.createElement("span");
-       forecastHumEl.classList = "card-body";
+       forecastHumEl.classList = "card-body text-center";
        forecastHumEl.textContent = dailyForecast.main.humidity + "  %";
 
        //append to forecast card
