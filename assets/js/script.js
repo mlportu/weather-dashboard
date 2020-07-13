@@ -37,6 +37,8 @@ var pastSearch = function(){
         // console.log(cities[i].city);
     pastSearchEl = document.createElement("div");
     pastSearchEl.textContent = cities[i].city;
+    pastSearchEl.classList="btn-light border p-2"
+    pastSearchEl.setAttribute("type", "submit")
 
     pastSearchContainerEl.appendChild(pastSearchEl);
     }
