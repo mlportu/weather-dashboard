@@ -1,4 +1,4 @@
-# weather-dashboard
+# Weather Dashboard
 
 ## Purpose
 A web-based dashboard built to show the current weather in a city of choice and the upcoming five (5) day forecast for that city
@@ -19,7 +19,7 @@ Previous searches are saved in localStorage and the five (5) most recent searche
 * Moment.js API
 
 ## Website
-
+https://mlportu.github.io/weather-dashboard/
 
 ## Contribution
 Made by Mike Portu
