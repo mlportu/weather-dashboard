@@ -149,9 +149,16 @@ var display5Day = function(weather){
        var forecastEl=document.createElement("div");
        forecastEl.classList = "card bg-primary text-light m-2";
 
+       //create date element
+       var forecastDate = document.createElement("h5")
+       forecastDate.classList = "card-header"
+       forecastDate.textContent= moment(dailyForecast.dt.value).format("MMM D, YYYY");
+       forecastEl.appendChild(forecastDate);
+
        //console.log(dailyForecast)
        //create an image element
        var weatherIcon = document.createElement("img")
+       weatherIcon.classList = "card-body";
        weatherIcon.setAttribute("src", `http://openweathermap.org/img/wn/${dailyForecast.weather[0].icon}@2x.png`);  
 
        //append to forecast card
