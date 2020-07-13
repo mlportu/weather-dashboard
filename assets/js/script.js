@@ -14,7 +14,7 @@ var formSumbitHandler = function(event){
     if(city){
         getCityWeather(city);
         get5Day(city);
-        cities.push({city});
+        cities.unshift({city});
         cityInputEl.value = "";
     } else{
         alert("Please enter a City");
@@ -25,35 +25,6 @@ var formSumbitHandler = function(event){
 var saveSearch = function(){
     localStorage.setItem("cities", JSON.stringify(cities));
 };
-
-var pastSearch = function(){
-    cities = JSON.parse(localStorage.getItem("cities"));
-    if(!cities){
-        cities = [];
-    }
-  
-    for (var i=cities.length-1; i>=cities.length-5; i--){
-        // console.log(cities[i].city);
-    var city=cities[i].city
-
-    pastSearchEl = document.createElement("button");
-    pastSearchEl.textContent = city;
-    pastSearchEl.classList = "d-flex w-100 btn-light border p-2";
-    pastSearchEl.setAttribute("data-city",city)
-    pastSearchEl.setAttribute("type", "submit");
-
-    pastSearchButtonEl.appendChild(pastSearchEl);
-    }
-}
-
-var pastSearchHandler = function(event){
-    var city = event.target.getAttribute("data-city")
-    console.log(city);
-    if(city){
-        getCityWeather(city);
-        get5Day(city);
-    }
-}
 
 var getCityWeather = function(city){
     var apiKey = "844421298d794574c100e3409cee0499"
@@ -211,6 +182,36 @@ var display5Day = function(weather){
         forecastContainerEl.appendChild(forecastEl);
     }
 
+}
+
+var pastSearch = function(){
+    cities = JSON.parse(localStorage.getItem("cities"));
+    if(!cities){
+        cities = [];
+    }
+
+    for (var i=0; i<cities.length; i++){
+        //console.log(cities[i].city);
+    
+        var city = cities[i].city
+
+    pastSearchEl = document.createElement("button");
+    pastSearchEl.textContent = city;
+    pastSearchEl.classList = "d-flex w-100 btn-light border p-2";
+    pastSearchEl.setAttribute("data-city",city)
+    pastSearchEl.setAttribute("type", "submit");
+
+    pastSearchButtonEl.appendChild(pastSearchEl);
+    }
+}
+
+
+var pastSearchHandler = function(event){
+    var city = event.target.getAttribute("data-city")
+    if(city){
+        getCityWeather(city);
+        get5Day(city);
+    }
 }
 
 pastSearch();
