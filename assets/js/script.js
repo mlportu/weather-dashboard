@@ -30,7 +30,7 @@ var pastSearch = function(){
     cities = JSON.parse(localStorage.getItem("cities"));
     if(!cities){
         cities = [];
-    }
+    } else if(cities){
   
     for (var i=cities.length-1; i>=cities.length-5; i--){
         // console.log(cities[i].city);
@@ -44,6 +44,7 @@ var pastSearch = function(){
 
     pastSearchButtonEl.appendChild(pastSearchEl);
     }
+}
 }
 
 var pastSearchHandler = function(event){
