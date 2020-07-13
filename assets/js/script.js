@@ -57,11 +57,19 @@ var getCityWeather = function(city){
 var displayWeather = function(weather, searchCity){
    //clear old content
    weatherContainerEl.textContent= "";  
-   citySearchInputEl.textContent=searchCity + " (" + weather.coord.dt + ") "
+   citySearchInputEl.textContent=searchCity;
+
+   //console.log(weather);
+
+   //create date element
+   var currentDate = document.createElement("span")
+   currentDate.textContent=" (" + moment(weather.dt.value).format("MMM D, YYYY") + ") ";
+   citySearchInputEl.appendChild(currentDate);
 
    //create an image element
    var weatherIcon = document.createElement("img")
    weatherIcon.setAttribute("src", `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`);
+   citySearchInputEl.appendChild(weatherIcon);
 
    //create a span element to hold temperature data
    var temperatureEl = document.createElement("span");
@@ -74,8 +82,6 @@ var displayWeather = function(weather, searchCity){
    //create a span element to hold Wind data
    var windSpeedEl = document.createElement("span");
    windSpeedEl.textContent = "Wind Speed: " + weather.wind.speed + " MPH";
-
-   citySearchInputEl.appendChild(weatherIcon);
 
    //append to container
    weatherContainerEl.appendChild(temperatureEl);
@@ -143,12 +149,10 @@ var display5Day = function(weather){
        var forecastEl=document.createElement("div");
        forecastEl.classList = "card bg-primary text-light m-2";
 
-    console.log(dailyForecast)
+       //console.log(dailyForecast)
        //create an image element
        var weatherIcon = document.createElement("img")
        weatherIcon.setAttribute("src", `http://openweathermap.org/img/wn/${dailyForecast.weather[0].icon}@2x.png`);  
-       
-        console.log(weatherIcon);
 
        //append to forecast card
        forecastEl.appendChild(weatherIcon);
