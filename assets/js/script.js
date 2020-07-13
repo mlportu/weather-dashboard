@@ -189,9 +189,9 @@ var pastSearch = function(){
     if(!cities){
         cities = [];
     }
-  
+
     for (var i=0; i<cities.length; i++){
-        console.log(cities[i].city);
+        //console.log(cities[i].city);
     
         var city = cities[i].city
 
@@ -208,7 +208,6 @@ var pastSearch = function(){
 
 var pastSearchHandler = function(event){
     var city = event.target.getAttribute("data-city")
-    console.log(city);
     if(city){
         getCityWeather(city);
         get5Day(city);
