@@ -20,6 +20,7 @@ var formSumbitHandler = function(event){
         alert("Please enter a City");
     }
     saveSearch();
+    pastSearch();
 }
 
 var saveSearch = function(){
