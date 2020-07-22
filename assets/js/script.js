@@ -20,7 +20,7 @@ var formSumbitHandler = function(event){
         alert("Please enter a City");
     }
     saveSearch();
-    pastSearch();
+    pastSearch(city);
 }
 
 var saveSearch = function(){
@@ -185,25 +185,36 @@ var display5Day = function(weather){
 
 }
 
-var pastSearch = function(){
-    cities = JSON.parse(localStorage.getItem("cities"));
-    if(!cities){
-        cities = [];
-    }
-
-    for (var i=0; i<cities.length; i++){
-        //console.log(cities[i].city);
-    
-        var city = cities[i].city
+var pastSearch = function(pastSearch){
+ 
+    console.log(pastSearch)
 
     pastSearchEl = document.createElement("button");
-    pastSearchEl.textContent = city;
+    pastSearchEl.textContent = pastSearch;
     pastSearchEl.classList = "d-flex w-100 btn-light border p-2";
     pastSearchEl.setAttribute("data-city",city)
     pastSearchEl.setAttribute("type", "submit");
 
-    pastSearchButtonEl.appendChild(pastSearchEl);
-    }
+    pastSearchButtonEl.prepend(pastSearchEl);
+    
+    // cities = JSON.parse(localStorage.getItem("cities"));
+    // if(!cities){
+    //     cities = [];
+    // }
+
+    // for (var i=0; i<cities.length; i++){
+    //     //console.log(cities[i].city);
+    
+    //     var city = cities[i].city
+
+    // pastSearchEl = document.createElement("button");
+    // pastSearchEl.textContent = city;
+    // pastSearchEl.classList = "d-flex w-100 btn-light border p-2";
+    // pastSearchEl.setAttribute("data-city",city)
+    // pastSearchEl.setAttribute("type", "submit");
+
+    // pastSearchButtonEl.appendChild(pastSearchEl);
+    // }
 }
 
 
@@ -215,7 +226,7 @@ var pastSearchHandler = function(event){
     }
 }
 
-pastSearch();
+// pastSearch();
 
 cityFormEl.addEventListener("submit", formSumbitHandler);
 pastSearchButtonEl.addEventListener("click", pastSearchHandler);
