@@ -187,34 +187,15 @@ var display5Day = function(weather){
 
 var pastSearch = function(pastSearch){
  
-    console.log(pastSearch)
+    // console.log(pastSearch)
 
     pastSearchEl = document.createElement("button");
     pastSearchEl.textContent = pastSearch;
     pastSearchEl.classList = "d-flex w-100 btn-light border p-2";
-    pastSearchEl.setAttribute("data-city",city)
+    pastSearchEl.setAttribute("data-city",pastSearch)
     pastSearchEl.setAttribute("type", "submit");
 
     pastSearchButtonEl.prepend(pastSearchEl);
-    
-    // cities = JSON.parse(localStorage.getItem("cities"));
-    // if(!cities){
-    //     cities = [];
-    // }
-
-    // for (var i=0; i<cities.length; i++){
-    //     //console.log(cities[i].city);
-    
-    //     var city = cities[i].city
-
-    // pastSearchEl = document.createElement("button");
-    // pastSearchEl.textContent = city;
-    // pastSearchEl.classList = "d-flex w-100 btn-light border p-2";
-    // pastSearchEl.setAttribute("data-city",city)
-    // pastSearchEl.setAttribute("type", "submit");
-
-    // pastSearchButtonEl.appendChild(pastSearchEl);
-    // }
 }
 
 
