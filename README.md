@@ -21,7 +21,7 @@ Previous searches are saved in localStorage and the five (5) most recent searche
 ## Website
 https://mlportu.github.io/weather-dashboard/
 
-![web page screenshot] (assets/images/Weather-Dashboard.png)
+![web page screenshot](assets/images/Weather-Dashboard.png)
 
 ## Contribution
 Made by Mike Portu
